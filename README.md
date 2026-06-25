@@ -90,7 +90,7 @@ Growth-Intelligence-Platform
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/Growth-Intelligence-Platform.git
+git clone https://github.com/PatiPranavi/Growth-Intelligence-Platform/tree/main
 ```
 
 ### Navigate to the Project
