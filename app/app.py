@@ -7,7 +7,7 @@ import streamlit as st
 from datetime import date
 from utils.data_utils import load_orders, filter_df, compute_kpis, cohort_analysis, rfm_segmentation
 
-st.set_page_config(page_title="Data Storytelling Dashboard", layout="wide")
+st.set_page_config(page_title="Growth Intelligence Platform", layout="wide")
 
 DATA_PATH = os.environ.get("ORDERS_CSV", os.path.join(os.path.dirname(__file__), "..", "data", "orders.csv"))
 
@@ -16,6 +16,10 @@ def load_data():
     return load_orders(DATA_PATH)
 
 df = load_data()
+
+st.title("📊 Growth Intelligence Platform")
+st.markdown("Analyze revenue, customer behavior, retention, and business growth metrics.")
+
 min_d, max_d = df["order_date"].dt.date.min(), df["order_date"].dt.date.max()
 
 st.sidebar.header("Filters")
@@ -78,8 +82,127 @@ seg_counts.columns = ["Segment","Customers"]
 fig_rfm = px.bar(seg_counts, x="Segment", y="Customers", title="Customers by RFM Segment")
 st.plotly_chart(fig_rfm, use_container_width=True)
 
+st.markdown("---")
+
+st.subheader("🚀 Growth Insights")
+
+margin = kpis["Margin%"]
+aov = kpis["AOV"]
+
+insights = []
+
+if margin < 0.20:
+    insights.append("⚠ Profit margin is below 20%. Consider reducing discounts or operational costs.")
+
+if aov < 100:
+    insights.append("📦 Average Order Value is low. Consider bundle offers or upselling.")
+
+top_channel = (
+    fdf.groupby("channel")["revenue"]
+    .sum()
+    .sort_values(ascending=False)
+    .index[0]
+)
+
+top_country = (
+    fdf.groupby("country")["revenue"]
+    .sum()
+    .sort_values(ascending=False)
+    .index[0]
+)
+
+insights.append(f"🏆 Highest revenue comes from: {top_channel}")
+insights.append(f"🌍 Best performing country: {top_country}")
+top_category = (
+    fdf.groupby("category")["revenue"]
+    .sum()
+    .idxmax()
+)
+
+insights.append(f"📦 Top revenue category: {top_category}")
+
+for item in insights:
+    st.success(item)
+
+st.subheader("📈 Growth Funnel")
+orders = kpis["Orders"]
+customers = kpis["Customers"]
+
+repeat_customers = (
+    fdf.groupby("customer_id")["order_id"]
+    .nunique()
+    .gt(1)
+    .sum()
+)
+
+funnel = pd.DataFrame({
+    "Stage": [
+        "Customers",
+        "Orders",
+        "Repeat Customers"
+    ],
+    "Count": [
+        customers,
+        orders,
+        repeat_customers
+    ]
+})
+
+fig_funnel = px.funnel(
+    funnel,
+    x="Count",
+    y="Stage",
+    title="Customer Conversion Funnel"
+)
+
+st.plotly_chart(fig_funnel, use_container_width=True)
+
+st.subheader("📋 Executive Recommendations")
+
+recommendations = []
+
+if margin < 0.25:
+    recommendations.append("💰 Reduce discounts to improve profit margin.")
+
+if aov < 120:
+    recommendations.append("🛒 Increase Average Order Value by offering product bundles.")
+
+if top_channel == "Email":
+    recommendations.append("📧 Increase investment in Email Marketing campaigns.")
+elif top_channel == "Organic":
+    recommendations.append("🔍 Invest more in SEO and organic content.")
+elif top_channel == "Social":
+    recommendations.append("📱 Scale successful social media campaigns.")
+
+recommendations.append("🎯 Retarget inactive customers with personalized offers.")
+recommendations.append("🏆 Reward loyal customers with a loyalty program.")
+recommendations.append(
+    f"📈 Prioritize marketing campaigns for the '{top_category}' category, as it is currently the highest revenue contributor."
+)
+for rec in recommendations:
+    st.info(rec)
+
+st.markdown("---")
+st.subheader("🏆 Top 10 Customers by Revenue")
+
+top_customers = (
+    fdf.groupby("customer_id")["revenue"]
+    .sum()
+    .sort_values(ascending=False)
+    .head(10)
+    .reset_index()
+)
+
+top_customers.columns = ["Customer ID", "Revenue"]
+
+st.dataframe(
+    top_customers,
+    use_container_width=True,
+    hide_index=True
+)
+
 st.download_button("Download filtered CSV", data=fdf.to_csv(index=False).encode("utf-8"),
                    file_name="filtered_orders.csv", mime="text/csv")
 
 st.markdown('---')
-st.caption("Data Storytelling Dashboard • Streamlit + Plotly • Synthetic e-commerce dataset")
+st.caption("Growth Intelligence Platform • Streamlit • Plotly • Customer Analytics • Business Intelligence")
