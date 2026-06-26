@@ -9,6 +9,38 @@ An interactive Product Analytics and Business Intelligence platform built with *
 Growth Intelligence Platform is designed to transform raw transactional data into actionable business insights. It provides visual dashboards for monitoring revenue, customer segmentation, retention trends, and product performance, enabling data-driven decision-making.
 
 ---
+## 🌐 Live Demo
+
+**Streamlit App:** https://patipranavi-growth-intelligence-platform-appapp-a2g1jj.streamlit.app/
+
+---
+## 📸 Dashboard Preview
+
+### Main Dashboard
+
+![Growth Intelligence Platform Dashboard](images/dashboard.png)
+
+---
+### 📈 Revenue Analytics
+
+![Revenue Analytics](images/revenue-analytics.png)
+
+---
+### 📊 Cohort Analysis (Customer Retention)
+
+![Cohort Analysis](images/cohort-analysis.png)
+
+---
+### 👥 Customer Analytics
+
+![Customer Analytics](images/customer-analytics.png)
+
+---
+### 📋 Executive Recommendations
+
+![Executive Dashboard](images/executive-dashboard.png)
+
+---
 
 ## ✨ Features
 
@@ -21,6 +53,7 @@ Growth Intelligence Platform is designed to transform raw transactional data int
 - 📋 Business KPI Monitoring
 - 📉 Executive-Level Business Insights
 - 🎛️ Interactive Filters and Visualizations
+- ☁️ Live Cloud Deployment using Streamlit Community Cloud
 
 ---
 
@@ -35,29 +68,36 @@ Growth Intelligence Platform is designed to transform raw transactional data int
 | Machine Learning | Scikit-learn |
 | Database | SQL (Extendable) |
 | Version Control | Git, GitHub |
+| Deployment | Streamlit Community Cloud |
 
 ---
 
 ## 📂 Project Structure
 
-```
+```text
 Growth-Intelligence-Platform
 │
 ├── app/
 │   ├── app.py
-│   └── pages/
+│   └── utils/
+│       └── data_utils.py
 │
 ├── data/
+│   └── orders.csv
 │
-├── utils/
+├── images/
+│   ├── dashboard.png
+│   ├── revenue-analytics.png
+│   ├── cohort-analysis.png
+│   ├── customer-analytics.png
+│   └── executive-dashboard.png
 │
 ├── requirements.txt
-│
+├── .gitignore
 └── README.md
 ```
 
 ---
-
 ## 📊 Dashboard Modules
 
 ### 📌 Business Overview
@@ -66,17 +106,23 @@ Growth-Intelligence-Platform
 - Total Customers
 - Average Order Value
 
+---
+
 ### 📌 Revenue Analytics
 - Revenue Trends
 - Monthly Sales
 - Category-wise Revenue
 - Product Performance
 
+---
+
 ### 📌 Customer Analytics
 - Customer Segmentation (RFM)
 - Customer Distribution
 - Geographic Analysis
 - Repeat Customer Analysis
+
+---
 
 ### 📌 Retention Analytics
 - Cohort Retention Matrix
@@ -90,7 +136,7 @@ Growth-Intelligence-Platform
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/PatiPranavi/Growth-Intelligence-Platform/tree/main
+git clone https://github.com/PatiPranavi/Growth-Intelligence-Platform.git
 ```
 
 ### Navigate to the Project
