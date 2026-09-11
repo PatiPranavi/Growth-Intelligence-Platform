@@ -74,15 +74,4 @@ User question:
         print(f"\nGemini API error: {e}")
         return "Gemini is temporarily unavailable. Please try again in a moment."
 
-
-if __name__ == "__main__":
-
-    question = "Which country has the highest population?"
-
-    answer = ask_assistant(question)
-
-    print("\nQuestion:")
-    print(question)
-
-    print("\nAssistant:")
-    print(answer)
+   
