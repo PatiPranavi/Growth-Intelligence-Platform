@@ -1,11 +1,26 @@
 import os
+import sys
+
 import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 from datetime import date
-from utils.data_utils import load_orders, filter_df, compute_kpis, cohort_analysis, rfm_segmentation
+
+sys.path.append(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
+
+from utils.data_utils import (
+    load_orders,
+    filter_df,
+    compute_kpis,
+    cohort_analysis,
+    rfm_segmentation
+)
+
+from rag.assistant import ask_assistant
 
 st.set_page_config(page_title="Growth Intelligence Platform", layout="wide")
 
@@ -203,6 +218,26 @@ st.dataframe(
 
 st.download_button("Download filtered CSV", data=fdf.to_csv(index=False).encode("utf-8"),
                    file_name="filtered_orders.csv", mime="text/csv")
+
+st.markdown("---")
+
+st.subheader("🤖 Analytics Intelligence Assistant")
+st.caption("Ask questions about the Growth Intelligence Platform.")
+
+question = st.text_input(
+    "Ask a business question",
+    placeholder="e.g. Which category performs best?"
+)
+
+if st.button("Ask Assistant"):
+    if question.strip():
+        with st.spinner("Analyzing project knowledge..."):
+            answer = ask_assistant(question)
+
+        st.markdown("### 💡 Answer")
+        st.write(answer)
+    else:
+        st.warning("Please enter a question.")
 
 st.markdown('---')
 st.caption("Growth Intelligence Platform • Streamlit • Plotly • Customer Analytics • Business Intelligence")

@@ -1,0 +1,111 @@
+{
+  "project": {
+    "name": "Growth Intelligence Platform",
+    "purpose": "End-to-end data analytics and business intelligence platform for revenue, customer, product, channel, geography, and retention analysis.",
+    "pipeline": [
+      "Raw business data",
+      "SQL analysis",
+      "Python EDA",
+      "Power BI and DAX",
+      "Streamlit dashboard",
+      "Business insights and recommendations"
+    ]
+  },
+  "documents": [
+    {
+      "id": "project_overview",
+      "topic": "Project Overview",
+      "content": "Growth Intelligence Platform combines SQL, Python, Power BI, DAX, and Streamlit to turn business transaction data into interactive analytics and business insights."
+    },
+    {
+      "id": "data_model",
+      "topic": "Data Model",
+      "content": "The core analytical dataset is an orders table containing order-level business transaction information including order date, customer, product, category, subcategory, channel, geography, price, quantity, discount, revenue, and cost-related fields."
+    },
+    {
+      "id": "sql_validation",
+      "topic": "SQL Data Validation",
+      "content": "SQL analysis includes data-quality and validation checks before business analysis. The validation workflow checks the structure and consistency of the orders data and establishes reliable measures for downstream analysis."
+    },
+    {
+      "id": "sql_kpis",
+      "topic": "Business KPIs",
+      "content": "The SQL layer calculates core business metrics such as revenue, cost, profit, orders, customers, units, and profitability-related measures. These metrics form the foundation for dashboard analysis."
+    },
+    {
+      "id": "sql_customer",
+      "topic": "Customer Analytics",
+      "content": "Customer analysis includes customer-level order behavior, order frequency, repeat versus one-time customer behavior, and RFM-based customer segmentation."
+    },
+    {
+      "id": "sql_retention",
+      "topic": "Cohort Retention",
+      "content": "Cohort analysis groups customers by their first-order period and evaluates subsequent customer activity over time to understand retention behavior."
+    },
+    {
+      "id": "sql_product",
+      "topic": "Product Analysis",
+      "content": "Product analysis evaluates product and category performance using revenue, profit, and related business metrics to identify strong and weak product areas."
+    },
+    {
+      "id": "sql_advanced",
+      "topic": "Advanced Business Analysis",
+      "content": "Advanced SQL analysis extends the basic KPI layer into business questions involving customer behavior, product performance, retention, revenue, profitability, and comparative business segments."
+    },
+    {
+      "id": "python_eda",
+      "topic": "Python EDA",
+      "content": "Python EDA performs dataset inspection, data-type and missing-value checks, duplicate checks, unique-value analysis, descriptive statistics, date analysis, profitability calculations, loss-making line-item analysis, customer order-frequency analysis, distribution analysis, quantiles, correlations, discount analysis, and monthly revenue/profit trends."
+    },
+    {
+      "id": "python_profitability",
+      "topic": "Profitability Analysis",
+      "content": "Profit is calculated as revenue minus cost. Profit margin is calculated as profit divided by revenue and expressed as a percentage. The Python workflow also identifies loss-making line items and examines profitability distributions."
+    },
+    {
+      "id": "python_discount",
+      "topic": "Discount Analysis",
+      "content": "The Python analysis groups discounts into practical levels such as No, Low, Medium, and High discount and evaluates their relationship with profit margin, including category-level comparisons."
+    },
+    {
+      "id": "python_trends",
+      "topic": "Trend Analysis",
+      "content": "Python evaluates monthly revenue and profit trends after converting order dates into a proper datetime representation."
+    },
+    {
+      "id": "powerbi_model",
+      "topic": "Power BI Model",
+      "content": "Power BI uses a Calendar table connected to the orders table through order date. The Calendar table provides Year, Quarter, Month, and Day hierarchy levels for time-based analysis."
+    },
+    {
+      "id": "powerbi_measures",
+      "topic": "DAX Measures",
+      "content": "Core Power BI measures include Total Revenue, Total Cost, Total Profit, Total Orders, Total Customers, Units Sold, and Profit Margin %. Supporting time-intelligence measures include Revenue LY and Revenue YoY %."
+    },
+    {
+      "id": "powerbi_visuals",
+      "topic": "Dashboard Visualizations",
+      "content": "The Power BI dashboard contains revenue and profit trends, revenue and profit by category, revenue by channel, revenue and profit by city, profit margin by category, and revenue YoY growth. It also supports Year, Month, Category, Channel, and City slicers."
+    },
+    {
+      "id": "powerbi_interactivity",
+      "topic": "Interactive Analysis",
+      "content": "The dashboard supports slicer-driven filtering, cross-filtering between visuals, drill-down through the date hierarchy, and report tooltips for deeper exploration."
+    },
+    {
+      "id": "verified_insights",
+      "topic": "Verified Business Insights",
+      "content": "Completed dashboard analysis identified Electronics as the strongest category across revenue, profit, and profit margin; Web as the highest-revenue channel; Malmö as the highest-profit city; and March as the highest-revenue month."
+    },
+    {
+      "id": "analytics_definitions",
+      "topic": "Metric Definitions",
+      "content": "Revenue represents sales value. Cost represents associated business cost. Profit is revenue minus cost. Profit margin is profit divided by revenue. Orders represent transaction orders. Customers represent distinct customers. Units sold represent total quantity."
+    },
+    {
+      "id": "assistant_behavior",
+      "topic": "Analytics Assistant Behavior",
+      "content": "The AI analytics assistant should answer business questions using retrieved project-specific knowledge. It should distinguish verified findings from general explanations, avoid inventing numerical results, and state when the available knowledge does not contain enough information to answer a question."
+    }
+  ]
+}
